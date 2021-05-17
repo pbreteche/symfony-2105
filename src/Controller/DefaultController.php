@@ -10,6 +10,7 @@ class DefaultController extends AbstractController
 
     public function index(): Response
     {
-        return new Response('Bonjour à tous!');
+
+        return new Response('Bonjour à tous!</body>');
     }
 }
