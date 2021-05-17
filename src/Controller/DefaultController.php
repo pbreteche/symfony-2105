@@ -17,6 +17,6 @@ class DefaultController extends AbstractController
 
     public function hello(string $name): Response
     {
-        return new Response('Bonjour '.$name);
+        return $this->render('default/hello.html.twig');
     }
 }
