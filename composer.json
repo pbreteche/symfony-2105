@@ -1,6 +1,8 @@
 {
+    "name": "dawan/blog",
+    "description": "A training project",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
