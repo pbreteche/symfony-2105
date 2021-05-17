@@ -13,4 +13,10 @@ class DefaultController extends AbstractController
 
         return new Response('Bonjour à tous!</body>');
     }
+
+
+    public function hello(string $name): Response
+    {
+        return new Response('Bonjour '.$name);
+    }
 }
