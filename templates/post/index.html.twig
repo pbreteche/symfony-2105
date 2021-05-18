@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% dump posts %} {# tag dump -> envoi vers le profiler #}
-    <p>{{ dump(posts) }}</p> {# fonction twig -> insère dans l'affichage #}
     <ul>
         {% for post in posts %}
-        <li>{{ loop.index }} - {{ post.title }}</li>
+        <li>
+            {{ loop.index }} - {{ post.title }}
+            <a href="{{ path('app_post_show', {id: post.id}) }}">Voir</a>
+        </li>
         {% endfor %}
     </ul>
 {% endblock %}
