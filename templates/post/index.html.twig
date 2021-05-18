@@ -8,6 +8,13 @@
             {{ loop.index }} - {{ post.title }}
             <a href="{{ path('app_post_show', {id: post.id}) }}">Voir</a>
         </li>
+            {% else %}
+            <li>Pas d'articles</li>
         {% endfor %}
     </ul>
+
+    {% if posts | length is divisible by(2) %}
+        <p>Demo structure "If"</p>
+    {% endif %}
+
 {% endblock %}
