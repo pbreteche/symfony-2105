@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <a href="{{ path('app_post_create') }}">Ajouter</a>
     <ul>
         {% for post in posts %}
         <li>

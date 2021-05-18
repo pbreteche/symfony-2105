@@ -2,10 +2,11 @@
 
 {% block body %}
     <a href="{{ path('app_post_index') }}">Retour à la liste</a>
+    <a href="{{ path('app_post_edit', {id: post.id}) }}">Modifier</a>
     <article>
         <h1>{{ post.title }}</h1>
         <div>
-            {{ post.body }}
+            {{ post.body | nl2br }}
         </div>
     </article>
 {% endblock %}
