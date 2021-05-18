@@ -19,6 +19,20 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    /**
+     * @return Post[]
+     */
+    public function findLatest()
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery(
+                'SELECT post FROM '.Post::class.' ORDER BY post.createAt DESC'
+            )->setMaxResults(20)
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */
