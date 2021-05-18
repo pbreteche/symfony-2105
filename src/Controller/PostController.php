@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/post", methods="GET")
+ */
 class PostController extends AbstractController
 {
     /**
-     * @Route("/post", methods="GET")
+     * @Route("")
      */
     public function index(PostRepository $postRepository): Response
     {
@@ -23,19 +27,12 @@ class PostController extends AbstractController
 
     /**
      * @Route(
-     *     "/post/{id}",
-     *     requirements={"id":"\d+"},
-     *     methods="GET"
+     *     "/{id}",
+     *     requirements={"id":"\d+"}
      * )
      */
-    public function show(int $id, PostRepository $postRepository): Response
+    public function show(Post $post): Response
     {
-        $post = $postRepository->find($id);
-
-        if (!$post) {
-            throw $this->createNotFoundException('Article '.$id.' non trouvé');
-        }
-
         return $this->render('post/show.html.twig', [
             'post' => $post,
         ]);
