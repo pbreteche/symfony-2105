@@ -108,4 +108,30 @@ class PostController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route(
+     *     "/{id}/delete",
+     *     requirements={"id": "\d+"},
+     *     methods={"GET", "DELETE"}
+     * )
+     */
+    public function delete(
+        Post $post,
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        if ('DELETE' === $request->getMethod()) {
+            $manager->remove($post);
+            $manager->flush();
+
+            $this->addFlash('success', 'Votre article a bien été supprimé.');
+
+            return $this->redirectToRoute('app_post_index');
+        }
+
+        return $this->render('post/delete.html.twig', [
+            'post' => $post,
+        ]);
+    }
 }

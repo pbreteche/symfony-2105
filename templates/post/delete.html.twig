@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Suppression de l'article {{ post.title }}</h1>
+    <form method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>Supprimer</button>
+    </form>
+{% endblock %}
