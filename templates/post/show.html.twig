@@ -5,6 +5,7 @@
     <a href="{{ path('app_post_edit', {id: post.id}) }}">Modifier</a>
     <article>
         <h1>{{ post.title }}</h1>
+        <p>{{ post.createdAt | date('d/m/Y') }}</p>
         <div>
             {{ post.body | nl2br }}
         </div>
