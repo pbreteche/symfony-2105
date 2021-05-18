@@ -27,7 +27,7 @@ class PostRepository extends ServiceEntityRepository
         return $this
             ->getEntityManager()
             ->createQuery(
-                'SELECT post FROM '.Post::class.' ORDER BY post.createAt DESC'
+                'SELECT post FROM '.Post::class.' post ORDER BY post.createdAt DESC'
             )->setMaxResults(20)
             ->getResult()
         ;
