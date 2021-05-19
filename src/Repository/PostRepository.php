@@ -47,6 +47,9 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return Post[]
+     */
     public function findByAuthor(Author $author)
     {
         return $this->createQueryBuilder('post')
@@ -56,9 +59,13 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Post[]
+     */
     public function findByKeywordName(string $keywordName)
     {
         return $this->createQueryBuilder('post')
+            ->addSelect('keyword')
             ->join('post.keywords', 'keyword')
             ->andWhere('keyword.name LIKE :name')
             ->getQuery()

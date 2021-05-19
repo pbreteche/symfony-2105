@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\KeywordRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -136,6 +137,7 @@ class PostController extends AbstractController
      */
     public function search(
         Request $request,
+        KeywordRepository $keywordRepository,
         PostRepository $postRepository
     ): Response {
         $keywordName = $request->query->get('q');
@@ -146,6 +148,7 @@ class PostController extends AbstractController
         }
 
         return $this->render('post/search.html.twig', [
+            'keyword_name' => $keywordName,
             'posts' => $posts,
         ]);
     }

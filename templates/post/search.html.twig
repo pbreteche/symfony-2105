@@ -3,13 +3,18 @@
 {% block body %}
     <form>
         <label for="search">Recherche</label>
-        <input type="search" name="q" id="search">
+        <input type="search" name="q" id="search" value="{{ keyword_name }}">
         <button>Rechercher</button>
     </form>
 
     <ul>
         {% for post in posts %}
-        <li><a href="{{ path('app_post_show', {id: post.id}) }}">{{ post.title }}</a></li>
+        <li>
+            <a href="{{ path('app_post_show', {id: post.id}) }}">{{ post.title }}</a>
+            {% for keyword in post.keywords %}
+            {{ keyword.name }}
+            {% endfor %}
+        </li>
         {% endfor %}
     </ul>
 {% endblock %}
