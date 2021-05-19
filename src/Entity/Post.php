@@ -129,4 +129,12 @@ class Post
 
         return $this;
     }
+
+    /**
+     * @Assert\IsTrue(message="Le contenu doit être deux foix plus long que le titre (accesseur)")
+     */
+    public function isBodyTwiceAsLongAsTitle()
+    {
+        return strlen($this->body) >= 2 * strlen($this->title);
+    }
 }
