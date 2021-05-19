@@ -23,6 +23,9 @@ class PostType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'required' => false,
+                'attr' => [
+                    'class' => 'custom-class'
+                ],
             ])
         ;
 
