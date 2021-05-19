@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Repository\PostRepository;
 
-class PostSearcher
+class PostSearcher implements PostSearcherInterface
 {
     /**
      * @var \App\Repository\PostRepository

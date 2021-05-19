@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
-use App\Repository\KeywordRepository;
 use App\Repository\PostRepository;
-use App\Service\PostSearcher;
+use App\Service\PostSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -138,7 +137,7 @@ class PostController extends AbstractController
      */
     public function search(
         Request $request,
-        PostSearcher $postSearcher
+        PostSearcherInterface $postSearcher
     ): Response {
         $keywordName = $request->query->get('q');
 
