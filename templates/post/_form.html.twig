@@ -1,5 +1,32 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.body) }}
+
+    <div>
+        {{ form_errors(form.keywords) }}
+        {{ form_label(form.keywords) }}
+        {{ form_widget(form.keywords) }}
+        <button class="btn btn-primary add-keyword">Ajouter</button>
+        <script>
+document.addEventListener('DOMContentLoaded', function(){
+    const keywordCollection = document.querySelector('#post_keywords');
+    keywordCollection.dataset.index = keywordCollection.children.length;
+
+    const addKeywordButton = document.querySelector('button.add-keyword');
+
+    addKeywordButton.addEventListener('click', function () {
+        const prototype = keywordCollection.dataset.prototype;
+
+        const newForm = prototype.replace(/__name__/g, keywordCollection.dataset.index);
+
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = newForm;
+        keywordCollection.appendChild(wrapper);
+    })
+});
+        </script>
+    </div>
+
     <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(form) }}

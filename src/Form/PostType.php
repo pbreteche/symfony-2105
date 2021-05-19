@@ -7,6 +7,7 @@ use App\Entity\Keyword;
 use App\Entity\Post;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,15 +18,13 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('body')
-            ->add('keywords', EntityType::class, [
-                'class' => Keyword::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,
-                'attr' => [
-                    'class' => 'custom-class'
+            ->add('keywords', CollectionType::class, [
+                'entry_type' => KeywordType::class,
+                'entry_options' => [
+                    'label' => false,
                 ],
+                'allow_add' => true,
+                'allow_delete' => true,
             ])
         ;
 
