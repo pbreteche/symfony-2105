@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Author;
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,15 +49,7 @@ class PostController extends AbstractController
         EntityManagerInterface $manager
     ): Response {
         $post = new Post();
-        $form = $this->createFormBuilder($post)
-            ->add('title')
-            ->add('body')
-            ->add('writtenBy', EntityType::class, [
-                'class' => Author::class,
-                'choice_label' => 'name',
-            ])
-            ->getForm()
-        ;
+        $form = $this->createForm(PostType::class, $post);
 
         $form->handleRequest($request);
 
@@ -92,13 +83,10 @@ class PostController extends AbstractController
         Request $request,
         EntityManagerInterface $manager
     ): Response {
-        $form = $this->createFormBuilder($post, [
-            'method' => 'PUT'
-        ])
-            ->add('title')
-            ->add('body')
-            ->getForm()
-        ;
+        $form = $this->createForm(PostType::class, $post, [
+            'method' => 'PUT',
+            'with_author' => false,
+        ]);
 
         $form->handleRequest($request);
 
