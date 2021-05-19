@@ -6,6 +6,11 @@
     <article>
         <h1>{{ post.title }}</h1>
         <p>Écrit par {{ post.writtenBy.name }}, le {{ post.createdAt | date('d/m/Y') }}</p>
+        <p> Mot-clés :
+            {% for keyword in post.keywords %}
+                {{ keyword.name }}({{ keyword.posts | length }}){% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
         <div>
             {{ post.body | nl2br }}
         </div>

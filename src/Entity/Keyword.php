@@ -25,7 +25,7 @@ class Keyword
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="keywords")
+     * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="keywords", fetch="EXTRA_LAZY")
      */
     private $posts;
 
