@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Author;
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -44,6 +45,15 @@ class PostRepository extends ServiceEntityRepository
             ->setMaxResults(20)
             ->getResult()
         ;
+    }
+
+    public function findByAuthor(Author $author)
+    {
+        return $this->createQueryBuilder('post')
+            ->andWhere('post.writtenBy = :author')
+            ->getQuery()
+            ->setParameter('author', $author)
+            ->getResult();
     }
 
     // /**

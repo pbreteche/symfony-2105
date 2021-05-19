@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <h1>{{ author.name }}</h1>
+        {% if author.email %}
+        <p>{{ author.email }}</p>
+        {% endif %}
+    </div>
+
+    <ul>
+        {% for post in posts %}
+            <li>
+                {{ loop.index }} - {{ post.title }}
+                <a href="{{ path('app_post_show', {id: post.id}) }}">Voir</a>
+            </li>
+        {% else %}
+            <li>Pas d'articles</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
