@@ -11,8 +11,10 @@ class PostSearcher implements PostSearcherInterface
      */
     private $postRepository;
 
-    public function __construct(PostRepository $postRepository)
-    {
+    public function __construct(
+        PostRepository $postRepository,
+        string $adminEmail
+    ) {
         $this->postRepository = $postRepository;
     }
 
