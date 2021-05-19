@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Author;
+use App\Entity\Keyword;
 use App\Entity\Post;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,6 +17,13 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('body')
+            ->add('keywords', EntityType::class, [
+                'class' => Keyword::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'required' => false,
+            ])
         ;
 
         if ($options['with_author']) {
