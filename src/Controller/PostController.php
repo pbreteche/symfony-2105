@@ -131,6 +131,25 @@ class PostController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/search")
+     */
+    public function search(
+        Request $request,
+        PostRepository $postRepository
+    ): Response {
+        $keywordName = $request->query->get('q');
+        $posts = [];
+
+        if ($keywordName) {
+            $posts = $postRepository->findByKeywordName($keywordName);
+        }
+
+        return $this->render('post/search.html.twig', [
+            'posts' => $posts,
+        ]);
+    }
+
     public function stat(PostRepository $postRepository)
     {
         return $this->render('post/stat.html.twig', [

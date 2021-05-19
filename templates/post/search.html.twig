@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form>
+        <label for="search">Recherche</label>
+        <input type="search" name="q" id="search">
+        <button>Rechercher</button>
+    </form>
+
+    <ul>
+        {% for post in posts %}
+        <li><a href="{{ path('app_post_show', {id: post.id}) }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
