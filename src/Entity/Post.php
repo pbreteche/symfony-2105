@@ -44,7 +44,7 @@ class Post
     private $writtenBy;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Keyword::class, inversedBy="posts")
+     * @ORM\ManyToMany(targetEntity=Keyword::class, inversedBy="posts", cascade="persist")
      */
     private $keywords;
 
