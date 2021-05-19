@@ -49,7 +49,9 @@ class PostController extends AbstractController
         EntityManagerInterface $manager
     ): Response {
         $post = new Post();
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(PostType::class, $post, [
+            'validation_groups' => ['published'],
+        ]);
 
         $form->handleRequest($request);
 
