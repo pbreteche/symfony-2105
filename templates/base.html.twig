@@ -17,6 +17,11 @@
     </head>
     <body>
     <img src="{{ asset('images/symfony.svg') }}" alt="logo symfony" height="32">
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Se connecter</a>
+    {% endif %}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="flash-{{ label }}">
