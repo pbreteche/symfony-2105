@@ -7,6 +7,7 @@ use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Service\PostSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin", methods="GET")
+ * @IsGranted("ROLE_ADMIN")
  */
 class PostController extends AbstractController
 {
@@ -22,6 +24,12 @@ class PostController extends AbstractController
      */
     public function index(PostRepository $postRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if (false) {
+            throw $this->createAccessDeniedException('');
+        }
+
         $posts = $postRepository->findLatest2();
 
         return $this->render('post/index.html.twig', [
@@ -131,13 +139,6 @@ class PostController extends AbstractController
         return $this->render('post/search.html.twig', [
             'keyword_name' => $keywordName,
             'posts' => $postSearcher->search($keywordName),
-        ]);
-    }
-
-    public function stat(PostRepository $postRepository)
-    {
-        return $this->render('post/stat.html.twig', [
-            'post_count' => $postRepository->count([]),
         ]);
     }
 }

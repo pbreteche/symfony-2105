@@ -31,7 +31,7 @@
         {% endfor %}
         {% block body %}{% endblock %}
         <aside>
-            {{ render_esi(controller('App\\Controller\\PostController::stat')) }}
+            {{ render_esi(controller('App\\Controller\\AuthorController::stat')) }}
         </aside>
     </body>
 </html>
