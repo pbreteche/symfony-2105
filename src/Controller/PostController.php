@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\AuthorRepository;
 use App\Repository\PostRepository;
 use App\Service\PostSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,7 +43,8 @@ class PostController extends AbstractController
      */
     public function create(
         Request $request,
-        EntityManagerInterface $manager
+        EntityManagerInterface $manager,
+        AuthorRepository $authorRepository
     ): Response {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post, [
@@ -50,6 +52,9 @@ class PostController extends AbstractController
         ]);
 
         $form->handleRequest($request);
+        $user = $this->getUser();
+        $author = $authorRepository->findOneBy(['user' => $user]);
+        $post->setWrittenBy($author);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($post);
@@ -81,7 +86,6 @@ class PostController extends AbstractController
     ): Response {
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
-            'with_author' => false,
         ]);
 
         $form->handleRequest($request);

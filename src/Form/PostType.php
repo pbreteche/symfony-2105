@@ -27,22 +27,12 @@ class PostType extends AbstractType
                 'allow_delete' => true,
             ])
         ;
-
-        if ($options['with_author']) {
-            $builder
-                ->add('writtenBy', EntityType::class, [
-                    'class' => Author::class,
-                    'choice_label' => 'name',
-                ])
-            ;
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
-            'with_author' => true,
         ]);
     }
 }
