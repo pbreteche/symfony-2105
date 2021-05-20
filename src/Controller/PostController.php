@@ -78,20 +78,13 @@ class PostController extends AbstractController
      *     requirements={"id": "\d+"},
      *     methods={"GET", "PUT"}
      * )
+     * @IsGranted("POST_EDIT", subject="post")
      */
     public function edit(
         Post $post,
         Request $request,
-        EntityManagerInterface $manager,
-        AuthorRepository $authorRepository
+        EntityManagerInterface $manager
     ): Response {
-        $user = $this->getUser();
-        $author = $authorRepository->findOneBy(['user' => $user]);
-
-        if ($author !== $post->getWrittenBy()) {
-            throw $this->createAccessDeniedException();
-        }
-
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
         ]);
