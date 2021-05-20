@@ -12,7 +12,7 @@
         {% for post in posts %}
             <li>
                 {{ loop.index }} - {{ post.title }}
-                <a href="{{ path('app_post_show', {id: post.id}) }}">Voir</a>
+                <a href="{{ path('app_author_show', {id: post.id}) }}">Voir</a>
             </li>
         {% else %}
             <li>Pas d'articles</li>

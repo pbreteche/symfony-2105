@@ -10,7 +10,7 @@
     <ul>
         {% for post in posts %}
         <li>
-            <a href="{{ path('app_post_show', {id: post.id}) }}">{{ post.title }}</a>
+            <a href="{{ path('app_author_show', {id: post.id}) }}">{{ post.title }}</a>
             {% for keyword in post.keywords %}
             {{ keyword.name }}
             {% endfor %}
