@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <table class="table  table-striped">
+        <thead>
+        <tr><th>Nom</th> <th>Email</th><th>Identifiant</th><th>Actions</th></tr>
+        </thead>
+
+        <tbody>
+        {% for author in authors %}
+        <tr>
+            <td>{{ author.name }}</td><td>{{ author.email }}</td>
+            <td>{{ author.user ? author.user.email : ' - ' }}</td>
+            <td><a class="btn btn-primary" href="{{ path('app_user_edit', {id: author.id}) }}">Éditer</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}k
