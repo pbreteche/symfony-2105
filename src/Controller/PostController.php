@@ -82,8 +82,16 @@ class PostController extends AbstractController
     public function edit(
         Post $post,
         Request $request,
-        EntityManagerInterface $manager
+        EntityManagerInterface $manager,
+        AuthorRepository $authorRepository
     ): Response {
+        $user = $this->getUser();
+        $author = $authorRepository->findOneBy(['user' => $user]);
+
+        if ($author !== $post->getWrittenBy()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
         ]);
