@@ -16,6 +16,12 @@ post:
             label: Corps
         keywords:
             label: Mots-clés
+    stat: >-
+        {count, plural,
+            =0 {Aucun article n'a été publié jusqu'à présent}
+            one {Il existe un unique article}
+            other {Il existe # articles}
+        }
 
 keyword:
     field:
