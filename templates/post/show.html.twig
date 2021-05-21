@@ -8,10 +8,10 @@
     <article>
         <h1>{{ post.title }}</h1>
         <p>{{ 'post.show.written_by' | trans({
-                '%name%': post.writtenBy.name,
-                '%date%': post.createdAt | date('d/m/Y'),
+                'name': post.writtenBy.name,
+                'date': post.createdAt | date('d/m/Y'),
             }) }}</p>
-        <p> Mot-clés :
+        <p> {{ 'post.field.keywords.label' | trans }} :
             {% for keyword in post.keywords %}
                 {{ keyword.name }}({{ keyword.posts | length }}){% if not loop.last %}, {% endif %}
             {% endfor %}
