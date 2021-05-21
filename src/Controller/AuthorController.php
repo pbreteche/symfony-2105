@@ -59,8 +59,10 @@ class AuthorController extends AbstractController
         PunkApiClient $client
     ): Response {
         $content = $client->random();
+        $content2 = $client->search(35, 50);
         return $this->render('author/http_client.html.twig', [
             'content' => $content,
+            'content2' => $content2,
         ]);
     }
 
