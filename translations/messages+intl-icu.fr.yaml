@@ -7,7 +7,7 @@ post:
     create:
         success: Votre article a bien été enregistré.
     show:
-        written_by: Écrit par {name}, le {date}
+        written_by: Écrit par {name}, le {date, date, dd MMM YYYY}
 
     field:
         title:

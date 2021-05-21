@@ -9,7 +9,7 @@
         <h1>{{ post.title }}</h1>
         <p>{{ 'post.show.written_by' | trans({
                 'name': post.writtenBy.name,
-                'date': post.createdAt | date('d/m/Y'),
+                'date': post.createdAt,
             }) }}</p>
         <p> {{ 'post.field.keywords.label' | trans }} :
             {% for keyword in post.keywords %}
