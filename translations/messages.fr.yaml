@@ -1,6 +1,13 @@
+app:
+    action:
+        back_to_list: Retour à la liste
+        edit: Modifier
+
 post:
     create:
         success: Votre article a bien été enregistré.
+    show:
+        written_by: Écrit par %name%, le %date%
 
     field:
         title:
