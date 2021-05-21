@@ -1,0 +1,29 @@
+app:
+    action:
+        back_to_list: Back to list
+        edit: Edit
+
+post:
+    create:
+        success: Your article is saved
+    show:
+        written_by: Written by {name}, at {date, date, dd MMM YYYY}
+
+    field:
+        title:
+            label: Title
+        body:
+            label: Body
+        keywords:
+            label: Keywords
+    stat: >-
+        {count, plural,
+            =0 {There are no article for the moment}
+            one {There is only a single one article}
+            other {There are # articles}
+        }
+
+keyword:
+    field:
+        name:
+            label: Name
