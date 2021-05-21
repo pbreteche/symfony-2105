@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/admin", methods="GET")
@@ -44,7 +45,8 @@ class PostController extends AbstractController
     public function create(
         Request $request,
         EntityManagerInterface $manager,
-        AuthorRepository $authorRepository
+        AuthorRepository $authorRepository,
+        TranslatorInterface $translator
     ): Response {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post, [
@@ -60,7 +62,7 @@ class PostController extends AbstractController
             $manager->persist($post);
             $manager->flush();
 
-            $this->addFlash('success', 'Votre article a bien été enregistré.');
+            $this->addFlash('success', $translator->trans('post.create.success'));
 
             return $this->redirectToRoute('app_author_show', [
                 'id' => $post->getId(),
