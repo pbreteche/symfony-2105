@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Client\PunkApiClient;
 use App\Entity\Author;
 use App\Entity\Post;
 use App\Repository\AuthorRepository;
@@ -48,6 +49,18 @@ class AuthorController extends AbstractController
     {
         return $this->render('post/show.html.twig', [
             'post' => $post,
+        ]);
+    }
+
+    /**
+     * @Route("/api")
+     */
+    public function httpClient(
+        PunkApiClient $client
+    ): Response {
+        $content = $client->random();
+        return $this->render('author/http_client.html.twig', [
+            'content' => $content,
         ]);
     }
 
