@@ -1,3 +1,16 @@
 post:
     create:
         success: Votre article a bien été enregistré.
+
+    field:
+        title:
+            label: Titre
+        body:
+            label: Corps
+        keywords:
+            label: Mots-clés
+
+keyword:
+    field:
+        name:
+            label: Nom

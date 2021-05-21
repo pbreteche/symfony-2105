@@ -20,6 +20,7 @@ class KeywordType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Keyword::class,
+            'label_format' => 'keyword.field.%name%.label',
         ]);
     }
 }

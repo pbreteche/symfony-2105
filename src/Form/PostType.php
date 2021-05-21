@@ -33,6 +33,7 @@ class PostType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
+            'label_format' => 'post.field.%name%.label',
         ]);
     }
 }
