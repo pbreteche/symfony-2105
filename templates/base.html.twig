@@ -22,7 +22,8 @@
     {% else %}
         <a href="{{ path('app_login') }}">Se connecter</a>
     {% endif %}
-        {% for label, messages in app.flashes %}
+    <a href="?lang=fr">FR</a> | <a href="?lang=en">EN</a> | <a href="?lang=es">ES</a>
+    {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="flash-{{ label }}">
                     {{ message }}
