@@ -7,6 +7,7 @@ use App\Entity\Author;
 use App\Entity\Post;
 use App\Repository\AuthorRepository;
 use App\Repository\PostRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,12 +45,19 @@ class AuthorController extends AbstractController
      *     "/post/{id}",
      *     requirements={"id":"\d+"}
      * )
+     * @Cache(expires="tomorrow", public=true)
      */
     public function show(Post $post): Response
     {
-        return $this->render('post/show.html.twig', [
+        $response = $this->render('post/show.html.twig', [
             'post' => $post,
         ]);
+
+        $response->setExpires(new \DateTime('+2 days'));
+        $response->setPublic();
+        $response->headers->addCacheControlDirective('no-store');
+
+        return $response;
     }
 
     /**
